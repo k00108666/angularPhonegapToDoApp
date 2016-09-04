@@ -33,7 +33,7 @@ app.controller('main', function ($scope, $ionicModal, localStorageService) {
 
     var taskData = 'task';
 
-    //initialize the tasks scope with empty array
+    //create an array for the tasks
     $scope.tasks = [];
 
     //initialize the task scope with empty object
@@ -48,7 +48,7 @@ app.controller('main', function ($scope, $ionicModal, localStorageService) {
     });
 
     $scope.getTasks = function () {
-        //fetches task from local storage
+        //go get the task from local storage
         if (localStorageService.get(taskData)) {
             $scope.tasks = localStorageService.get(taskData);
         } else {
@@ -62,27 +62,29 @@ app.controller('main', function ($scope, $ionicModal, localStorageService) {
         localStorageService.set(taskData, $scope.tasks);
         $scope.task = {};
 
-        //close new task modal
+        //close task modal
         $scope.newTaskModal.hide();
     };
 
     $scope.removeTask = function (index) {
-        //removes a task
+        //removes task
         $scope.tasks.splice(index, 1);
         localStorageService.set(taskData, $scope.tasks);
     };
 
 
     $scope.completeTask = function (index) {
-        //updates a task as completed
+        //set a task to complete
         localStorageService.set(taskData, $scope.tasks);
     };
 
     $scope.openTaskModal = function () {
+      //show the model for a new task
         $scope.newTaskModal.show();
     };
 
     $scope.closeTaskModal = function () {
+      //hide the task model
         $scope.newTaskModal.hide();
     };
 });

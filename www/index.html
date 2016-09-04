@@ -8,11 +8,6 @@
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 
-    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
-    <link href="css/ionic.app.css" rel="stylesheet">
-    -->
-
-    <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
     <script src="lib/angular-local-storage/dist/angular-local-storage.js"></script>
 
@@ -22,27 +17,36 @@
 
     <!-- your app's js -->
     <script src="js/app.js"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+
 </head>
+<!--angular ng-app, nginit directives directive-->
 <body ng-app="ionic-todo" ng-controller="main" ng-init="getTasks()">
 
 <ion-pane>
     <ion-header-bar class="bar-dark">
-        <h1 class="title">Scotch-Todo</h1>
+      <!--title-->
+        <h1 class="title">angularToDo App</h1>
 
-        <!-- New Task button-->
-        <button class="button button-icon" ng-click="openTaskModal()">
+   <!--button for new task-->
+        <button class="btn" ng-click="openTaskModal()">
             <i class="icon ion-compose"></i>
         </button>
     </ion-header-bar>
     <ion-content>
+      <!--get all the tasks from the tasks array and display them-->
         <div class="list card" ng-repeat="task in tasks track by $index">
             <div class="item item-divider">
+              <!--one way data binding-->
                 <span ng-bind="task.title"></span>
             </div>
             <div class="item item-body">
+              <!--one way data bining-->
                 <strong>Title: <span ng-bind="task.title"></span></strong>
 
                 <p>
+                  <!--one way data binding-->
                     <span ng-bind="task.content"></span>
                 </p>
             </div>
@@ -50,9 +54,11 @@
             <div class="item tabs tabs-secondary tabs-icon-left">
                 <span class="item item-checkbox">
                     <label class="checkbox">
+                      <!--when then clicked perform complete task function. Uses two way data binding-->
                         <input type="checkbox" ng-model="task.completed" ng-click="completeTask($index)">
                     </label>
                 </span>
+              <!--when clicked remove task-->
                 <a class="tab-item assertive" ng-click="removeTask($index)">
                     <i class="icon ion-android-close"></i>
                 </a>
